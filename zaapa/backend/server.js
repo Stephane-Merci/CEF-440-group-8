@@ -8,7 +8,7 @@ const roadStatePositionRouter = require('./Routes/roadStateMarkerRoute')
 require('dotenv').config();
 
 const app = express();
-app.use(express.json()); // Fix: Call express.json() as a function
+app.use(express.json()); 
 
 app.use('/api/user', userRouter);
 app.use('/api/roadsigns',roadSignRouter)
