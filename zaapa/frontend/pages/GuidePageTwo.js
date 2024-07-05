@@ -8,7 +8,10 @@ const GuidePageTwo = () => {
     return (
         <View style={styles.container}>
             <View style={styles.iconWrapper}>
-
+            <Image 
+                source={require("../assets/Frame 34 (1).jpg")}
+                style={styles.iconWrapper}
+            />
             </View>
             <View>
                 <Text style={styles.heading}>Route Redirection</Text>

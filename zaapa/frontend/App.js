@@ -23,6 +23,8 @@ import GuidePageThree from './pages/GuidePageThree';
 import RoadStateUpdate from './pages/RoadStateUpdate';
 import LearnPage from './pages/LearnPage';
 import RoadSignList from './pages/RoadSignList';
+import NotifPref from './pages/NotifPref';
+
 
 
 
@@ -31,7 +33,9 @@ import RoadSignList from './pages/RoadSignList';
 export default function App() {
   return (
     <View style={styles.container}>
-    {/* <LoginPage /> */}
+    <LoginPage />
+    {/* <LearnPage /> */}
+    {/* <NotifPref /> */}
     {/* <RegistrationForm /> */}
     {/* <RegisterPage /> */}
     {/* <GuidePageOne /> */}
@@ -45,7 +49,7 @@ export default function App() {
     {/* <CreateNewPassword /> */}
     {/* <UpdatePassword /> */}
     {/* <Settings /> */}
-    <RoadSignList />
+    {/* <RoadSignList /> */}
     <StatusBar style="auto" />
   </View>
 );
