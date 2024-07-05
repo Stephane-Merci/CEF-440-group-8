@@ -28,7 +28,7 @@ const RoadSignList = () => {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     flex: {
         flexDirection: 'row',
         gap: 5,

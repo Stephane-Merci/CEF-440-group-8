@@ -43,7 +43,7 @@ const SavedLocations = () => {
             <View style={styles.box}>
                 <View style={{flexDirection:'row'}}>
                 <View style={styles.circle}>
-                    <MaterialIcons name="house" size={35} style={styles.icon}/>
+                    <MaterialIcons name="house" size={35} style={styles.iconss}/>
                 </View>
                 <View>
                     <Text style={styles.text1}> Parcour Vita </Text>
@@ -60,7 +60,7 @@ const SavedLocations = () => {
            <View style={styles.box}>
             <View style={{flexDirection:'row'}}>
                 <View style={styles.circle}>
-                    <MaterialIcons name="wallet-travel" size={35} style={styles.icon}/>
+                    <MaterialIcons name="wallet-travel" size={35} style={styles.iconss}/>
                 </View>
                 <View>
                     <Text style={styles.text1}> Santa Lucia </Text>
@@ -84,17 +84,13 @@ const SavedLocations = () => {
 }
 const styles = StyleSheet.create({
     container:{
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 40,
     },
     icon1:{
         color:'#227B98'
     },
     circle:{
-        borderRadius: 20,
+        borderRadius: 50,
         borderColor: '#41B5CF',
-        justifyContent: 'center',
         backgroundColor: 'rgba(65, 181, 207, 0.4)',
     },
     text1:{
@@ -123,6 +119,13 @@ const styles = StyleSheet.create({
         color: '#41B5CF',
         marginLeft: 12,
         marginTop: 5,
+    },
+    iconss: {
+        right: 5,
+        color: '#41B5CF',
+        marginLeft: 12,
+        marginTop: 5,
+        top: -3
     },
     button:{
         borderRadius: 20,

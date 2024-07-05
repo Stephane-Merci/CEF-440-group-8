@@ -26,7 +26,7 @@ const GuidePageTwo = () => {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -79,4 +79,4 @@ styles = StyleSheet.create({
         fontWeight: '700',
     },
 })
-export default GuidePageTwo
+export default GuidePageTwo;

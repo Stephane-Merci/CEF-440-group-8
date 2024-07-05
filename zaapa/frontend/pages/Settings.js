@@ -17,47 +17,64 @@ const Settings = () => {
             <View>
                 <Ionicons name="person-circle-outline" size={200} style={styles.person}/>
             </View>
-            <View style={styles.box}>
-                <View>
-                    <Text style={styles.text1}> Gilles Christan</Text>
-                    <Text style={styles.text2}> Douala, Cameroon</Text>
+
+            <TouchableOpacity onpress={() => console.log('Pressed')}>
+                <View style={styles.box}>
+                    <View>
+                        <Text style={styles.text1}> Gilles Christan</Text>
+                        <Text style={styles.text2}> Douala, Cameroon</Text>
+                    </View>
+                    <View>
+                        <MaterialIcons name="keyboard-arrow-right" size={30} style={styles.icon}/>
+                    </View>   
                 </View>
-                <View>
-                    <MaterialIcons name="keyboard-arrow-right" size={30} style={styles.icon}/>
-                </View>   
-            </View>
-            <Text style={{marginBottom: 5, marginTop: 20, fontSize: 18, fontWeight:'700'}}> General </Text>
-            <View style={styles.box}>
-                <View>
-                    <Text style={styles.text1}> Notifications </Text>
-                    <Text style={styles.text2}> Change your Notiicaton Preferences </Text>
+            </TouchableOpacity>
+
+            <Text style={{marginBottom: 5, marginTop: 10, fontSize: 18, fontWeight:'700'}}> General </Text>
+
+            <TouchableOpacity onpress={() => console.log('Pressed')}>
+                <View style={styles.box}>
+                    <View>
+                        <Text style={styles.text1}> Notifications </Text>
+                        <Text style={styles.text2}> Change your Notiicaton Preferences </Text>
+                    </View>
+                    <View>
+                        <MaterialIcons name="keyboard-arrow-right" size={30} style={styles.icon}/>
+                    </View>    
                 </View>
-                <View>
-                    <MaterialIcons name="keyboard-arrow-right" size={30} style={styles.icon}/>
-                </View>    
-            </View>
-            <View style={styles.box}>
-                <View>
-                    <Text style={styles.text1}> Language </Text>
-                    <Text style={styles.text2}> Choose your Default Language </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onpress={() => console.log('Pressed')}>
+                <View style={styles.box}>
+                    <View>
+                        <Text style={styles.text1}> Language </Text>
+                        <Text style={styles.text2}> Choose your Default Language </Text>
+                    </View>
+                    <View>
+                        <MaterialIcons name="keyboard-arrow-right"  size={30} style={styles.icon}/>
+                    </View>   
                 </View>
-                <View>
-                    <MaterialIcons name="keyboard-arrow-right"  size={30} style={styles.icon}/>
-                </View>   
-            </View>
-            <View style={styles.box}>
-                <Text style={styles.text11}> Dark Mode </Text>
-                <MaterialCommunityIcons name="toggle-switch" size={30} style={styles.icon}/>
-            </View>
-            <View style={styles.box}>
-                <View>
-                    <Text style={styles.text1}> Help Center </Text>
-                    <Text style={styles.text2}> Frequently Asked Questions </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onpress={() => console.log('Pressed')}>
+                <View style={styles.box}>
+                    <Text style={styles.text11}> Dark Mode </Text>
+                    <MaterialCommunityIcons name="toggle-switch" size={30} style={styles.icon}/>
                 </View>
-                <View>
-                    <MaterialIcons name="keyboard-arrow-right" size={30} style={styles.icon}/>
-                </View>     
-            </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onpress={() => console.log('Pressed')}>
+                <View style={styles.box}>
+                    <View>
+                        <Text style={styles.text1}> Help Center </Text>
+                        <Text style={styles.text2}> Frequently Asked Questions </Text>
+                    </View>
+                    <View>
+                        <MaterialIcons name="keyboard-arrow-right" size={30} style={styles.icon}/>
+                    </View>     
+                </View>
+            </TouchableOpacity>
+
             <View style={styles.bottomContent}>
                 <TouchableOpacity onpress={() => console.log('Pressed')}>
                     <View style={styles.bottom}>
@@ -69,6 +86,7 @@ const Settings = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
+                
                 <TouchableOpacity onpress={() => console.log('Pressed')}>
                     <View style={styles.bottom}>
                         <View>
@@ -87,9 +105,6 @@ const Settings = () => {
 }
 const styles = StyleSheet.create({
     container:{
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 40,
     },
     text1:{
         fontSize: 16,

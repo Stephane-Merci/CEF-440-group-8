@@ -2,14 +2,67 @@ import  {View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-nativ
 import  React, { useState } from 'react'
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import Joi from 'joi-browser';
 
 
-
-const CreateNewPassword = () => {
+const CreateNewPassword = ({ onSubmit, isLogin }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
-    const handlePress= () => {
-        console.log('Road State Updated');
+    // const [password, setPassword] = useState('');
+    // const [confirmPass, setConfirmPass] = useState('');
+    // const [errors, setErrors] = useState({});
+
+    // const schema = isLogin ? Joi.object({
+    //     email: Joi.string().email({ tlds: { allow: false } }).required().label('Email Address'),
+    //     password: Joi.string().min(8).required().label('Password'),
+    // }) : Joi.object({
+    //     password: Joi.string().min(8).required().error((errors) => {
+    //         return {
+    //             message: 'Password length must be of at least 8 characters long',
+    //         };
+    //     }).label('Password'),
+    //     confirmPass: Joi.string().valid(Joi.ref('password')).required().label('Confirm password').options({
+    //         language: {
+    //             any: {
+    //                 allowOnly: '!!Passwords do not match',
+    //             },
+    //         },r
+    //     }),
+    // });
+
+    // const validate = () => {
+    //     const data = isLogin ? { password } : { password, confirmPass };
+    //     const { error } = schema.validate(data, { abortEarly: false });
+
+    //     if (!error) return null;
+
+    //     const validationErrors = {};
+    //     for (let item of error.details) {
+    //         validationErrors[item.path[0]] = item.message;
+    //     }
+    //     return validationErrors;
+    // };
+
+    // const handleSubmit = () => {
+    //     const validationErrors = validate();
+    //     if (validationErrors) {
+    //         setErrors(validationErrors);
+    //         return;
+    //     }
+
+    //     // Call the onSubmit callback with form data
+    //     const data = isLogin ? { password } : { password };
+    //     onSubmit(data);
+
+    //     // Clear the form fields and errors after successful submission
+    //     setPassword('');
+    //     setConfirmPass('');
+    //     setErrors({});
+    // };
+
+    const handlePress = () => {
+        console.log('GO TO FORGET PASSWORD PAGE!!!!!');
     };
+
     return (
         <View style={styles.container}>
             <View style={{flexDirection: "row"}}>
@@ -20,10 +73,10 @@ const CreateNewPassword = () => {
             <Text style={{marginTop: 10, color: 'gray'}}>Your new password must be different from the previos one</Text>
 
             <View style={styles.field}>
-
-                <View style={styles.inputFiled}>
+                <View style={[styles.inputFiled]}>
                     <TextInput
                     placeholder='Enter your current password'
+                    // onChangeText={setPassword}
                     secureTextEntry={isPasswordShown}
                     style={styles.placeholder}
                     />
@@ -39,13 +92,12 @@ const CreateNewPassword = () => {
                     </TouchableOpacity>
                 <Text style={styles.text}>Password</Text>
                 </View>
-                <Text style={{color: 'gray'}}> Must be atleast 8 characters </Text>
 
-
-                <View style={styles.inputFiled}>
+                <View style={[styles.inputFiled]}>
                     <TextInput
                     placeholder='Enter your new password'
                     secureTextEntry={isPasswordShown}
+                    // onChangeText={setConfirmPass}
                     style={styles.placeholder}
                     />
                     <TouchableOpacity onPress={()=> setIsPasswordShown(!isPasswordShown)}>
@@ -60,22 +112,17 @@ const CreateNewPassword = () => {
                     </TouchableOpacity>
                 <Text style={styles.text}>Confirm Password</Text>
                 </View>
-                <Text style={{color: 'gray'}}> Both password must match </Text>
-
 
             </View>
 
-            <TouchableOpacity style={styles.button} onpress={handlePress}> 
+            <TouchableOpacity style={styles.button}> 
                 <Text style={styles.buttonText}> Reset Password </Text>
             </TouchableOpacity>
         </View>
     );
-}
+};
 const styles = StyleSheet.create({
     container:{
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 40,
     },
     button:{
         borderRadius: 20,
@@ -114,5 +161,5 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         fontSize: 15,
     }
-})
+});
 export default CreateNewPassword;

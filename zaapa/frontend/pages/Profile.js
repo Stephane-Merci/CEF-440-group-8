@@ -74,9 +74,6 @@ const Profile = () => {
 }
 const styles = StyleSheet.create({
     container:{
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 40,
     },
     icon1:{
         color:'#227B98'

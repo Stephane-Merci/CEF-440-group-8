@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
+
+
 const LearnRoad = ({ title, description, handlePress }) => {
     return (
         <TouchableOpacity style={styles.roadSign} onPress={handlePress}>
