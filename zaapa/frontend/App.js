@@ -31,7 +31,7 @@ import RoadSignList from './pages/RoadSignList';
 export default function App() {
   return (
     <View style={styles.container}>
-    <LoginPage />
+    {/* <LoginPage /> */}
     {/* <RegistrationForm /> */}
     {/* <RegisterPage /> */}
     {/* <GuidePageOne /> */}
@@ -45,8 +45,7 @@ export default function App() {
     {/* <CreateNewPassword /> */}
     {/* <UpdatePassword /> */}
     {/* <Settings /> */}
-
-    {/* <RoadSignList /> */}
+    <RoadSignList />
     <StatusBar style="auto" />
   </View>
 );
