@@ -1,3 +1,18 @@
+// import { NavigationContainer} from '@react-navigation/native'; 
+// import { createStackNavigator } from '@react-navigation/stack';
+import  Settings  from './pages/Settings';
+import  UpdatePassword  from './pages/UpdatePassword';
+import  CreateNewPassword  from './pages/CreateNewPassword';
+import  PassForgotEmail  from './pages/PassForgotEmail';
+import  PassForgotPhone  from './pages/PassForgotPhone';
+import  Profile  from './pages/Profile';
+import  SavedLocations  from './pages/SavedLocations';
+
+import  RegistrationForm  from './components/RegistrationForm';
+
+
+// import Navigator from './routes/homeStack';
+
 import { StatusBar } from 'expo-status-bar';
 import { View, StyleSheet, } from 'react-native';
 import RegisterPage from './pages/RegisterPage';
@@ -9,21 +24,61 @@ import RoadStateUpdate from './pages/RoadStateUpdate';
 import LearnPage from './pages/LearnPage';
 import RoadSignList from './pages/RoadSignList';
 
+
+
+
+// const Stack = createStackNavigator();
 export default function App() {
   return (
     <View style={styles.container}>
-      <LoginPage />
-      {/* <RegisterPage /> */}
-      {/* <GuidePageOne /> */}
-      {/* <GuidePageTwo /> */}
-      {/* <GuidePageThree /> */}
-      {/* <RoadStateUpdate /> */}
-      {/* <LearnPage /> */}
-      {/* <RoadSignList /> */}
-      <StatusBar style="auto" />
-    </View>
-  );
+    {/* <LoginPage /> */}
+    {/* <RegistrationForm /> */}
+    {/* <RegisterPage /> */}
+    {/* <GuidePageOne /> */}
+    {/* <GuidePageTwo /> */}
+    {/* <GuidePageThree /> */}
+    {/* <RoadStateUpdate /> */}
+    {/* <SavedLocations /> */}
+    {/* <Profile /> */}
+    {/* <PassForgotPhone /> */}
+    {/* <PassForgotEmail /> */}
+    {/* <CreateNewPassword /> */}
+    {/* <UpdatePassword /> */}
+    {/* <Settings /> */}
+    <RoadSignList />
+    <StatusBar style="auto" />
+  </View>
+);
 }
+    // <Navigator/>
+    // <NavigationContainer>
+    //   <Stack.Navigator
+    //     initialRouteName= 'Settings'
+    //   >
+    //     <Stack.Screen
+    //       name= 'Settings'
+    //       component= {Settings}
+    //       options={{
+    //         headerShown:false
+    //       }}
+    //     />
+    //    <Stack.Screen
+    //       name= 'Profile'
+    //       component= {Profile}
+    //       options={{
+    //         headerShown:false
+    //       }}
+    //     />
+    //     <Stack.Screen
+    //       name= 'UpdatePassword'
+    //       component= {UpdatePassword}
+    //       options={{
+    //         headerShown:false
+    //       }}
+    //     />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    
 
 const styles = StyleSheet.create({
   container: {
@@ -33,3 +88,4 @@ const styles = StyleSheet.create({
 
   },
 });
+
