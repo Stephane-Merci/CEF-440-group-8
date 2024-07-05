@@ -8,7 +8,10 @@ const GuidePageOne = () => {
   return (
     <View style={styles.container}>
       <View style={styles.iconWrapper}>
-
+        <Image 
+          source={require("../assets/Frame 34.jpg")}
+          style={styles.iconWrapper}
+        />
       </View>
       <View>
         <Text style={styles.heading}>Road Sign & State Notification</Text>

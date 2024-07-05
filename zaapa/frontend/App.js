@@ -31,11 +31,12 @@ import RoadSignList from './pages/RoadSignList';
 export default function App() {
   return (
     <View style={styles.container}>
-    <LoginPage />
+    {/* <LoginPage /> */}
+    {/* <LearnPage /> */}
     {/* <RegistrationForm /> */}
     {/* <RegisterPage /> */}
     {/* <GuidePageOne /> */}
-    {/* <GuidePageTwo /> */}
+    <GuidePageTwo />
     {/* <GuidePageThree /> */}
     {/* <RoadStateUpdate /> */}
     {/* <SavedLocations /> */}
