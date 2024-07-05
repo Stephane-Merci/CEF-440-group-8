@@ -7,57 +7,54 @@ import Joi from 'joi-browser';
 
 const CreateNewPassword = ({ onSubmit, isLogin }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
-    // const [password, setPassword] = useState('');
-    // const [confirmPass, setConfirmPass] = useState('');
-    // const [errors, setErrors] = useState({});
+    const [password, setPassword] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
+    const [errors, setErrors] = useState({});
 
-    // const schema = isLogin ? Joi.object({
-    //     email: Joi.string().email({ tlds: { allow: false } }).required().label('Email Address'),
-    //     password: Joi.string().min(8).required().label('Password'),
-    // }) : Joi.object({
-    //     password: Joi.string().min(8).required().error((errors) => {
-    //         return {
-    //             message: 'Password length must be of at least 8 characters long',
-    //         };
-    //     }).label('Password'),
-    //     confirmPass: Joi.string().valid(Joi.ref('password')).required().label('Confirm password').options({
-    //         language: {
-    //             any: {
-    //                 allowOnly: '!!Passwords do not match',
-    //             },
-    //         },r
-    //     }),
-    // });
+    const schema =  Joi.object({
+        password: Joi.string().min(8).required().error((errors) => {
+            return {
+                message: 'Password length must be of at least 8 characters long',
+            };
+        }).label('Password'),
+        confirmPass: Joi.string().valid(Joi.ref('password')).required().label('Confirm password').options({
+            language: {
+                any: {
+                    allowOnly: '!!Passwords do not match',
+                },
+            },
+        }),
+    });
 
-    // const validate = () => {
-    //     const data = isLogin ? { password } : { password, confirmPass };
-    //     const { error } = schema.validate(data, { abortEarly: false });
+    const validate = () => {
+        const data = { password, confirmPass };
+        const { error } = schema.validate(data, { abortEarly: false });
 
-    //     if (!error) return null;
+        if (!error) return null;
 
-    //     const validationErrors = {};
-    //     for (let item of error.details) {
-    //         validationErrors[item.path[0]] = item.message;
-    //     }
-    //     return validationErrors;
-    // };
+        const validationErrors = {};
+        for (let item of error.details) {
+            validationErrors[item.path[0]] = item.message;
+        }
+        return validationErrors;
+    };
 
-    // const handleSubmit = () => {
-    //     const validationErrors = validate();
-    //     if (validationErrors) {
-    //         setErrors(validationErrors);
-    //         return;
-    //     }
+    const handleSubmit = () => {
+        const validationErrors = validate();
+        if (validationErrors) {
+            setErrors(validationErrors);
+            return;
+        }
 
-    //     // Call the onSubmit callback with form data
-    //     const data = isLogin ? { password } : { password };
-    //     onSubmit(data);
+        // Call the onSubmit callback with form data
+        const data =  { password };
+        onSubmit(data);
 
-    //     // Clear the form fields and errors after successful submission
-    //     setPassword('');
-    //     setConfirmPass('');
-    //     setErrors({});
-    // };
+        // Clear the form fields and errors after successful submission
+        setPassword('');
+        setConfirmPass('');
+        setErrors({});
+    };
 
     const handlePress = () => {
         console.log('GO TO FORGET PASSWORD PAGE!!!!!');
@@ -73,10 +70,11 @@ const CreateNewPassword = ({ onSubmit, isLogin }) => {
             <Text style={{marginTop: 10, color: 'gray'}}>Your new password must be different from the previos one</Text>
 
             <View style={styles.field}>
-                <View style={[styles.inputFiled]}>
+                <View style={[styles.inputFiled, errors.password && styles.inputError]}>
                     <TextInput
                     placeholder='Enter your current password'
-                    // onChangeText={setPassword}
+                    value={password}
+                    onChangeText={setPassword}
                     secureTextEntry={isPasswordShown}
                     style={styles.placeholder}
                     />
@@ -91,13 +89,15 @@ const CreateNewPassword = ({ onSubmit, isLogin }) => {
                        
                     </TouchableOpacity>
                 <Text style={styles.text}>Password</Text>
+                {errors.password && <Text style={styles.error}>{errors.password}</Text>}
                 </View>
 
-                <View style={[styles.inputFiled]}>
+                <View style={[styles.inputFiled, errors.confirmPass && styles.inputError]}>
                     <TextInput
                     placeholder='Enter your new password'
                     secureTextEntry={isPasswordShown}
-                    // onChangeText={setConfirmPass}
+                    value={confirmPass}
+                    onChangeText={setConfirmPass}
                     style={styles.placeholder}
                     />
                     <TouchableOpacity onPress={()=> setIsPasswordShown(!isPasswordShown)}>
@@ -111,11 +111,12 @@ const CreateNewPassword = ({ onSubmit, isLogin }) => {
                        
                     </TouchableOpacity>
                 <Text style={styles.text}>Confirm Password</Text>
+                {errors.confirmPass && <Text style={styles.error}>{errors.confirmPass}</Text>}
                 </View>
 
             </View>
 
-            <TouchableOpacity style={styles.button}> 
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}> 
                 <Text style={styles.buttonText}> Reset Password </Text>
             </TouchableOpacity>
         </View>
@@ -136,6 +137,15 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: 'white',
     }, 
+    inputError: {
+        borderColor: '#FF5757',
+    },
+    error: {
+        fontSize: 12,
+        color: '#FF5757',
+        bottom: -18,
+        position: 'absolute'
+    },
     text:{
         color: '#41B5CF',
         position: 'absolute',

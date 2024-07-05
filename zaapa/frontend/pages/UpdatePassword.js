@@ -2,13 +2,61 @@ import  {View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-nativ
 import  React, { useState } from 'react'
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-
-
+import Joi from 'joi-browser';
 
 
 
 const UpdatePassword = () => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
+    const [password, setPassword] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
+    const [errors, setErrors] = useState({});
+
+    const schema = Joi.object({
+        password: Joi.string().min(8).required().error((errors) => {
+            return {
+                message: 'Password length must be of at least 8 characters long',
+            };
+        }).label('Password'),
+        confirmPass: Joi.string().valid(Joi.ref('password')).required().label('Confirm password').options({
+            language: {
+                any: {
+                    allowOnly: '!!Passwords do not match',
+                },
+            },
+        }),
+    });
+
+    const validate = () => {
+        const data = { password, confirmPass };
+        const { error } = schema.validate(data, { abortEarly: false });
+
+        if (!error) return null;
+
+        const validationErrors = {};
+        for (let item of error.details) {
+            validationErrors[item.path[0]] = item.message;
+        }
+        return validationErrors;
+    };
+
+    const handleSubmit = () => {
+        const validationErrors = validate();
+        if (validationErrors) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        // Call the onSubmit callback with form data
+        const data = { password };
+        onSubmit(data);
+
+        // Clear the form fields and errors after successful submission
+        setPassword('');
+        setConfirmPass('');
+        setErrors({});
+    };
+
     const handlePress= () => {
         console.log('Road State Updated');
     };
@@ -31,9 +79,11 @@ const UpdatePassword = () => {
                 <Text style={styles.text}>Current Password</Text>
                 </View>
 
-                <View style={styles.inputFiled}>
+                <View style={[styles.inputFiled, errors.password && styles.inputError]}>
                     <TextInput
                     placeholder='Enter your new password'
+                    value={password}
+                    onChangeText={setPassword}
                     secureTextEntry={isPasswordShown}
                     style={styles.placeholder}
                     />
@@ -48,11 +98,14 @@ const UpdatePassword = () => {
                        
                     </TouchableOpacity>
                 <Text style={styles.text}>New Password</Text>
+                {errors.password && <Text style={styles.error}>{errors.password}</Text>}
                 </View>
 
-                <View style={styles.inputFiled}>
+                <View style={[styles.inputFiled, errors.confirmPass && styles.inputError]}>
                     <TextInput
                     placeholder='Confirm new password'
+                    value={confirmPass}
+                    onChangeText={setConfirmPass}
                     secureTextEntry={isPasswordShown}
                     style={styles.placeholder}
                     />
@@ -67,10 +120,11 @@ const UpdatePassword = () => {
                        
                     </TouchableOpacity>
                 <Text style={styles.text}>Confirm Password</Text>
+                {errors.confirmPass && <Text style={styles.error}>{errors.confirmPass}</Text>}
                 </View> 
             </View>
 
-            <TouchableOpacity style={styles.button} onpress={handlePress}> 
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}> 
                 <Text style={styles.buttonText}>Update</Text>
             </TouchableOpacity>
         </View>
@@ -87,6 +141,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 350
     },  
+    inputError: {
+        borderColor: '#FF5757',
+    },
+    error: {
+        fontSize: 12,
+        color: '#FF5757',
+        bottom: -18,
+        position: 'absolute'
+    },
     buttonText:{
         fontWeight: '600',
         color: 'white',
