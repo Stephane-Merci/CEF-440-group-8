@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 15,
-        marginBottom: 10
+        marginBottom: 40
     },
     signName: {
         fontSize: 18,
