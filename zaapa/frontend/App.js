@@ -1,35 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { View, StyleSheet, } from 'react-native';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import GuidePageOne from './pages/GuidePageOne';
-import GuidePageTwo from './pages/GuidePageTwo';
-import GuidePageThree from './pages/GuidePageThree';
-import RoadStateUpdate from './pages/RoadStateUpdate';
-import LearnPage from './pages/LearnPage';
-import RoadSignList from './pages/RoadSignList';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './pages/HomeScreen';
+import NavigationScreen from './pages/NavigationScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <LoginPage />
-      {/* <RegisterPage /> */}
-      {/* <GuidePageOne /> */}
-      {/* <GuidePageTwo /> */}
-      {/* <GuidePageThree /> */}
-      {/* <RoadStateUpdate /> */}
-      {/* <LearnPage /> */}
-      {/* <RoadSignList /> */}
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" options={{ headerShown:false }} component={HomeScreen} />
+        <Stack.Screen name="Navigation" options={{ headerShown:false }} component={NavigationScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: 50,
-    paddingHorizontal: 15,
-
-  },
-});
