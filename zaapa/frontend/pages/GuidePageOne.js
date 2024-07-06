@@ -1,14 +1,17 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React from 'react';
 
 const GuidePageOne = () => {
   const handlePress = () => {
-    console.log(`GO Next guide page`);
+    console.log(`GO to next guide page`);
   };
   return (
     <View style={styles.container}>
       <View style={styles.iconWrapper}>
-
+        <Image 
+          source={require("../assets/Frame 34.jpg")}
+          style={styles.iconWrapper}
+        />
       </View>
       <View>
         <Text style={styles.heading}>Road Sign & State Notification</Text>
@@ -26,7 +29,7 @@ const GuidePageOne = () => {
   )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

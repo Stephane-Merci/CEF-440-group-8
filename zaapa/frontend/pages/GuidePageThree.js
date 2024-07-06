@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React from 'react';
 
 const GuidePageThree = () => {
     const handlePress = () => {
@@ -8,7 +8,10 @@ const GuidePageThree = () => {
     return (
         <View style={styles.container}>
             <View style={styles.iconWrapper}>
-
+            <Image 
+                source={require("../assets/Frame 34 (2).jpg")}
+                style={styles.iconWrapper}
+            />
             </View>
             <View>
                 <Text style={styles.heading}>Location Tracking</Text>
@@ -26,7 +29,7 @@ const GuidePageThree = () => {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',

@@ -8,7 +8,10 @@ const GuidePageTwo = () => {
     return (
         <View style={styles.container}>
             <View style={styles.iconWrapper}>
-
+            <Image 
+                source={require("../assets/Frame 34 (1).jpg")}
+                style={styles.iconWrapper}
+            />
             </View>
             <View>
                 <Text style={styles.heading}>Route Redirection</Text>
@@ -26,7 +29,7 @@ const GuidePageTwo = () => {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -79,4 +82,4 @@ styles = StyleSheet.create({
         fontWeight: '700',
     },
 })
-export default GuidePageTwo
+export default GuidePageTwo;

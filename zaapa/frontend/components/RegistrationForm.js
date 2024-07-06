@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import Joi from 'joi-browser';
+import { Ionicons } from '@expo/vector-icons';
 
 const RegisterForm = ({ onSubmit, isLogin }) => {
+    const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -125,10 +127,20 @@ const RegisterForm = ({ onSubmit, isLogin }) => {
                     placeholder="Enter your password"
                     value={password}
                     onChangeText={setPassword}
-                    secureTextEntry={true}
+                    secureTextEntry={isPasswordShown}
                 />
                 <Text style={styles.inputLabel}>Password</Text>
                 {errors.password && <Text style={styles.error}>{errors.password}</Text>}
+                <TouchableOpacity  onPress={()=> setIsPasswordShown(!isPasswordShown)}>
+                        {
+                            isPasswordShown == true ? (
+                                <Ionicons name='eye-off' size={24} style={styles.icon}/>
+                            ):(
+                                <Ionicons name='eye' size={24} style={styles.icon}/>
+                            )
+                        }
+                       
+                </TouchableOpacity>
                 {isLogin && (
                     <TouchableOpacity onPress={handlePress}>
                         <Text style={styles.labelLink}>Forget password?</Text>
@@ -142,10 +154,20 @@ const RegisterForm = ({ onSubmit, isLogin }) => {
                         placeholder="Confirm password"
                         value={confirmPass}
                         onChangeText={setConfirmPass}
-                        secureTextEntry={true}
+                        secureTextEntry={isPasswordShown}
                     />
                     <Text style={styles.inputLabel}>Confirm password</Text>
                     {errors.confirmPass && <Text style={styles.error}>{errors.confirmPass}</Text>}
+                    <TouchableOpacity  onPress={()=> setIsPasswordShown(!isPasswordShown)}>
+                        {
+                            isPasswordShown == true ? (
+                                <Ionicons name='eye-off' size={24} style={styles.icon}/>
+                            ):(
+                                <Ionicons name='eye' size={24} style={styles.icon}/>
+                            )
+                        }
+                       
+                </TouchableOpacity>
                 </View>
             )}
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
@@ -204,7 +226,13 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: '#41B5CF',
         fontWeight: '300',
-    }
+    },
+    icon:{
+        color: '#41B5CF',
+        right: 12,
+        top: -35,
+        position: 'absolute',
+    },
 });
 
 export default RegisterForm;

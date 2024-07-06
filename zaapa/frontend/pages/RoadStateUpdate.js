@@ -3,7 +3,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import RNPickerSelect from 'react-native-picker-select';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
 
 const RoadStateUpdate = () => {
     const options = [
@@ -66,7 +66,7 @@ const RoadStateUpdate = () => {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
