@@ -47,14 +47,29 @@ export default function NavigationScreen({ route, navigation }) {
     const R = 6371; // Radius of the earth in km
     const dLat = (end.latitude - start.latitude) * Math.PI / 180;
     const dLon = (end.longitude - start.longitude) * Math.PI / 180;
-    const a = 
+    const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(start.latitude * Math.PI / 180) * Math.cos(end.latitude * Math.PI / 180) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2); 
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in km
     return distance;
   };
+
+  const formatTime = (minutes) => {
+    const h = Math.floor(minutes / 60);
+    const m = Math.floor(minutes % 60);
+    return `${h.toString().padStart(2, '0')} : ${m.toString().padStart(2, '0')}`;
+  };
+
+  const getArrivalTime = (duration) => {
+    const now = new Date();
+    const arrival = new Date(now.getTime() + duration * 60000); // Add duration in minutes
+    const hours = arrival.getHours().toString().padStart(2, '0');
+    const minutes = arrival.getMinutes().toString().padStart(2, '0');
+    return `${hours} : ${minutes}`;
+  };
+
 
   return (
     <View style={styles.container}>
@@ -74,9 +89,21 @@ export default function NavigationScreen({ route, navigation }) {
         )}
       </MapView>
       <View style={styles.infoContainer}>
-        <Text>Speed: {speed ? speed.toFixed(2) : 0} m/s</Text>
-        <Text>Distance to Destination: {distance.toFixed(2)} km</Text>
-        <Text>Time Left: {timeLeft ? timeLeft.toFixed(2) : 0} mins</Text>
+        {/* <Text>Speed: {speed ? speed.toFixed(2) : 0} m/s</Text>*/}
+        <View>
+          <Text>Arrival Time</Text>
+          <Text>{timeLeft ? getArrivalTime(timeLeft) : '00 : 00'}</Text>
+
+        </View>
+        <View>
+          <Text>Distance</Text>
+          <Text>{distance.toFixed(2)} km</Text>
+        </View>
+        <View>
+          <Text>Time Left</Text>
+          <Text>{timeLeft ? formatTime(timeLeft) : '00 : 00'}</Text>
+
+        </View>
         <Button title="End Navigation" onPress={() => navigation.goBack()} />
       </View>
     </View>

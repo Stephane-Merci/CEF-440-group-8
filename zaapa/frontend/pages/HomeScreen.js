@@ -1,12 +1,14 @@
-// HomeScreen.js
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, TextInput, Button, Alert, ActivityIndicator, Modal } from "react-native";
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Button, Alert, ActivityIndicator, Modal } from "react-native";
+import { EvilIcons } from '@expo/vector-icons';
 import MapView, { Marker, Polyline } from "react-native-maps";
 import * as Location from 'expo-location';
 import axios from 'axios';
 import polyline from '@mapbox/polyline';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from '@react-navigation/native';
+import DestinationDetails from "../components/DestinationDetails";
+
 
 export default function HomeScreen() {
   const [mapRegion, setMapRegion] = useState({
@@ -183,6 +185,10 @@ export default function HomeScreen() {
     });
   };
 
+  const closeNavigation = () => {
+    setModalVisible(false);
+  };
+
   return (
     <View style={styles.container}>
       {errorMsg ? (
@@ -191,19 +197,24 @@ export default function HomeScreen() {
         <>
           <SafeAreaView>
             <View style={styles.searchContainer}>
-              <TextInput
+              {/* <TextInput
                 style={[styles.searchInput, { marginRight: 10 }]}
                 placeholder="Origin"
                 value={originQuery}
                 onChangeText={setOriginQuery}
-              />
+              /> */}
               <TextInput
-                style={styles.searchInput}
+                style={styles.input}
                 placeholder="Destination"
                 value={destinationQuery}
                 onChangeText={setDestinationQuery}
               />
-              <Button title="Search Route" onPress={searchLocation} />
+              <EvilIcons name="location" size={32} style={styles.icon} color="#227B98cc" />
+
+              <TouchableOpacity onPress={searchLocation} style={{ backgroundColor: '#227B98cc', borderRadius: 25, paddingHorizontal: 20, paddingVertical: 5, justifyContent: 'center',
+    alignItems: 'center', }}>
+                <Text style={{ color: '#ffffff', fontSize: 16 }}> Search </Text>
+              </TouchableOpacity>
             </View>
           </SafeAreaView>
           {loading ? (
@@ -238,22 +249,14 @@ export default function HomeScreen() {
         </>
       )}
 
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Route Information</Text>
-            <Text>Distance: {routeInfo.distance.toFixed(2)} km</Text>
-            <Text>Duration: {routeInfo.duration.toFixed(2)} mins</Text>
-            <Button title="Start" onPress={startNavigation} />
-            <Button title="Close" onPress={() => setModalVisible(false)} />
-          </View>
-        </View>
-      </Modal>
+      {modalVisible && (
+        <DestinationDetails
+          distance={routeInfo.distance.toFixed(1)}
+          duration={routeInfo.duration.toFixed(0)}
+          startNavigation={startNavigation}
+          cancel={closeNavigation}
+        />
+      )}
     </View>
   );
 }
@@ -264,9 +267,9 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flexDirection: 'row',
-    padding: 10,
-    backgroundColor: '#fff',
+    padding: 20,
     zIndex: 1,
+    color: 'rgba(255, 255, 255, 0)',
   },
   searchInput: {
     flex: 1,
@@ -281,16 +284,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-  },
-  loadingText: {
-    marginTop: 10,
-    fontSize: 16,
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
@@ -303,5 +296,24 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     marginBottom: 10,
+  },
+  input: {
+    height: 45,
+    fontSize: 16,
+    color: 'rgba(0, 0, 0, 0.8)',
+    borderColor: '#9CA3AF',
+    opacity: 0.75,
+    borderWidth: 1,
+    paddingLeft: 40,
+    borderRadius: 20,
+    marginRight: 10,
+    position: 'relative',
+    flexBasis: '75%'
+
+  },
+  icon: {
+    position: 'absolute',
+    top: 32,
+    left: 25
   },
 });
