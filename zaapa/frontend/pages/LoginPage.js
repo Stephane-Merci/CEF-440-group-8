@@ -2,9 +2,10 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import RegisterForm from '../components/RegistrationForm';
 
-const LoginPage = () => {
+const LoginPage = ({ navigation }) => {
     const handleSubmit = ({ email, password }) => {
         console.log(`\nEmail address: ${email}\nPassword: ${password}\n`);
+        navigation.navigate('GuidePageOne')
     };
     const handlePress = () => {
         console.log(`GO TO SIGN IN WITH PHONE NUMBER!!!!!`);
@@ -39,7 +40,10 @@ const LoginPage = () => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 30,
+        paddingTop: 45,
+        paddingHorizontal: 15,
+        backgroundColor: 'white',
+        flex: 1
     },
     header: {
         marginBottom: 45,

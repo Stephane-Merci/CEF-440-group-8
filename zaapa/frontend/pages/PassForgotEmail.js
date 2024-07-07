@@ -2,20 +2,24 @@ import  {View, Text,  StyleSheet, TouchableOpacity, Image, TextInput } from 'rea
 import  React from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const PassForgotEmail = () => {
+    const navigation = useNavigation();
+
     const handlePress= () => {
         console.log('Road State Updated');
     };
     return (
         <View style={styles.container}>
-            <View style={{flexDirection: "row"}}>
+            <TouchableOpacity style={{flexDirection: "row"}} onPress={()=> navigation.navigate('LoginPage')}>
                 <Feather name="arrow-left" size={24} style={styles.icon1}/>
                 <Text style={{fontSize: 16, fontWeight: 'bold', marginLeft: 5}}>Forgot Password</Text>
-            </View>
+            </TouchableOpacity>
 
-            <Image source={require('../assets/password.png')} style={{marginBottom: 19}}/>
+            <Image source={require('../assets/password.png')} style={{marginBottom: 19, alignSelf:'center'}}/>
 
             <Text style={{textAlign: 'center', fontSize: 22, fontWeight: 'bold'}}>Forgot Password ?</Text>
             <Text style={{textAlign: 'center', color: 'gray', marginBottom: 15}}> Please enter your email to receive a verification code to set a new password </Text>
@@ -37,17 +41,23 @@ const PassForgotEmail = () => {
                 <Text style={styles.text}>Code</Text>
             </View>
 
-            <TouchableOpacity style={styles.button} onpress={handlePress}> 
+            <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('SuccessPage')}> 
                 <Text style={styles.buttonText}>Confirm</Text>
             </TouchableOpacity>
 
-            <Text style={{color: '#41B5CF'}}>Phone Number Verification</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate('PassForgotPhone')}>
+                <Text style={{color: '#41B5CF'}}>Phone Number Verification</Text>
+            </TouchableOpacity>
         </View>
     );
 }
 
 const styles=StyleSheet.create({
     container:{
+        paddingTop: 45,
+        paddingHorizontal: 15,
+        backgroundColor: 'white',
+        flex: 1
     },
     button:{
         borderRadius: 20,

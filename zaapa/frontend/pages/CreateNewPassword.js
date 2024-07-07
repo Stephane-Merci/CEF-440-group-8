@@ -124,6 +124,10 @@ const CreateNewPassword = ({ onSubmit, isLogin }) => {
 };
 const styles = StyleSheet.create({
     container:{
+        paddingTop: 45,
+        paddingHorizontal: 15,
+        backgroundColor: 'white',
+        flex: 1
     },
     button:{
         borderRadius: 20,

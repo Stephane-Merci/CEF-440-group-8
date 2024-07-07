@@ -4,6 +4,7 @@ import RegisterForm from '../components/RegistrationForm';
 const RegisterPage = () => {
     const handleSubmit = ({ username, email, phone, password }) => {
         console.log(`\nUsername: ${username}\nEmail address: ${email}\nPhone number: ${phone}\nPassword: ${password}\n`);
+        navigation.navigate('GuidePageOne')
     };
     const handlePress = () => {
         console.log(`GO TO SIGN IN PAGE!!!!!`);
@@ -41,7 +42,8 @@ const RegisterPage = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 10,
+        paddingTop: 45,
+        paddingHorizontal: 15
     },
     header: {
         marginBottom: 25,

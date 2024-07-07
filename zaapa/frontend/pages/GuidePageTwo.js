@@ -1,7 +1,11 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
+
 
 const GuidePageTwo = () => {
+    const navigation = useNavigation();
+
     const handlePress = () => {
         console.log(`GO Next guide page`);
     };
@@ -22,7 +26,7 @@ const GuidePageTwo = () => {
                     <TouchableOpacity style={styles.circle}></TouchableOpacity>
                 </View>
             </View>
-            <TouchableOpacity style={styles.button} onPress={handlePress}>
+            <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('GuidePageThree')}>
                 <Text style={styles.buttonText}>Continue</Text>
             </TouchableOpacity>
         </View>

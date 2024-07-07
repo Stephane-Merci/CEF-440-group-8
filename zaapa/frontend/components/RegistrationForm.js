@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import Joi from 'joi-browser';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const RegisterForm = ({ onSubmit, isLogin }) => {
+    const navigation = useNavigation();
+
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -142,7 +145,7 @@ const RegisterForm = ({ onSubmit, isLogin }) => {
                        
                 </TouchableOpacity>
                 {isLogin && (
-                    <TouchableOpacity onPress={handlePress}>
+                    <TouchableOpacity onPress={()=> navigation.navigate('PassForgotEmail')}>
                         <Text style={styles.labelLink}>Forget password?</Text>
                     </TouchableOpacity>
                 )}

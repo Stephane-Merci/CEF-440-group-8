@@ -1,7 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const GuidePageThree = () => {
+    const navigation = useNavigation();
+
     const handlePress = () => {
         console.log(`GO Next Home page`);
     };
@@ -22,7 +25,7 @@ const GuidePageThree = () => {
                     <TouchableOpacity style={[styles.circle, styles.bold]}></TouchableOpacity>
                 </View>
             </View>
-            <TouchableOpacity style={styles.button} onPress={handlePress}>
+            <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Home')}>
                 <Text style={styles.buttonText}>Finish</Text>
             </TouchableOpacity>
         </View>

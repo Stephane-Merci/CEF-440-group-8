@@ -26,7 +26,7 @@ const DestinationDetails = ({distance, duration, startNavigation, cancel}) => {
                     <Text style={{ fontWeight: '300', color: '#41B5CF', marginLeft: 2 }}>{duration} mins</Text>
                 </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30, gap: 15, marginBottom: 40 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30, gap: 15, marginBottom: 100 }}>
                 <TouchableOpacity style={{ backgroundColor: '#41B5CF', borderRadius: 20, paddingVertical: 8, alignItems: 'center', flexBasis: '50%', flexDirection: 'row', justifyContent: 'center', gap: 5 }} onPress={startNavigation}>
                     <FontAwesome5 name="car" size={24} color="#ffffff" />
                     <Text style={{ color: '#fff', fontSize: 15, fontWeight: '700' }}>Start Navigation</Text>
@@ -37,7 +37,7 @@ const DestinationDetails = ({distance, duration, startNavigation, cancel}) => {
                 </TouchableOpacity>
             </View>
 
-            <Navbar />
+            <Navbar Explore={true}/>
         </View>
     )
 }

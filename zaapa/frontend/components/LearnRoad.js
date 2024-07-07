@@ -1,8 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
-
-
 const LearnRoad = ({ title, description, handlePress }) => {
     return (
         <TouchableOpacity style={styles.roadSign} onPress={handlePress}>
@@ -15,9 +13,9 @@ const LearnRoad = ({ title, description, handlePress }) => {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     roadSign: {
-        width: 330,
+        width: '100%',
         height: 135,
         backgroundColor: '#41B5CF',
         borderRadius: 20,
@@ -36,7 +34,7 @@ styles = StyleSheet.create({
     text: {
         color: '#FFFFFF',
         fontSize: 15,
-        width: 200,
+        width: '55%',
     },
 
 })

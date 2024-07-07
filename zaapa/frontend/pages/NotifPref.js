@@ -4,14 +4,14 @@ import { Entypo } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import LearnRoad from '../components/LearnRoad';
-import RoadLearnList from '../components/RoadLearnList';
-const LearnPage = () => {
+
+const NotifPref = ({ navigation }) => {
     const handlePress = () => {
         console.log(`GO Next guide page`);
     };
     return (
-        <View>
-            <TouchableOpacity style={{flexDirection: "row"}}>
+        <View style={styles.container}>
+            <TouchableOpacity style={{flexDirection: "row"}} onPress={() => navigation.navigate('Settings')}>
                 <Feather name="arrow-left" size={24} style={styles.icon1}/>
                 <Text style={{fontSize: 16, fontWeight: 'bold', marginLeft: 5, color:'#227B98'}}>Back</Text>
             </TouchableOpacity>
@@ -28,8 +28,10 @@ const LearnPage = () => {
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
+        paddingTop: 45,
+        paddingHorizontal: 15,
+        backgroundColor: 'white',
+        flex: 1
     },
     icon1:{
         color:'#227B98'
@@ -91,4 +93,4 @@ const styles = StyleSheet.create({
     },
 
 })
-export default LearnPage
+export default NotifPref;

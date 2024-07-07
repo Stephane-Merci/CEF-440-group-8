@@ -6,8 +6,8 @@ const RoadLearnList = ({ title, description }) => {
     return (
         <View style={styles.roadTip}>
             <View>
-                <Text style={styles.signName}>Turn Left</Text>
-                <Text style={styles.descript}>Logistic regression is a fundamental classification technique...</Text>
+                <Text style={styles.signName}>{title}</Text>
+                <Text style={styles.descript}>{description}</Text>
                 <TouchableOpacity style={styles.learnMore}>
                     <Text style={styles.learnText}> Lear More</Text>
                     <EvilIcons name="chevron-right" size={24} color="#FFFFFF" />
@@ -20,7 +20,7 @@ const RoadLearnList = ({ title, description }) => {
 
 const styles = StyleSheet.create({
     roadTip: {
-        width: 330,
+        width: '100%',
         backgroundColor: 'rgba(156, 163, 175, 0.2)',
         borderRadius: 20,
         flexDirection: 'row',
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 15,
-        marginBottom: 40
+        marginBottom: 10
     },
     signName: {
         fontSize: 18,
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default RoadLearnList
+export default RoadLearnList;

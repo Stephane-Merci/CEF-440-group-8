@@ -8,16 +8,16 @@ import { Feather } from '@expo/vector-icons';
 
 
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
     const handlePress= () => {
         console.log('Road State Updated');
     };
     return (
         <View style={styles.container}>
-            <View style={{flexDirection: "row"}}>
+            <TouchableOpacity style={{flexDirection: "row"}} onPress={() => navigation.navigate('Settings')}>
                 <Feather name="arrow-left" size={24} style={styles.icon1}/>
                 <Text style={{fontSize: 16, fontWeight: 'bold', marginLeft: 5, color:'#227B98'}}>Back</Text>
-            </View>
+            </TouchableOpacity>
             <Text style={{fontWeight: 700, textAlign: 'center', fontSize: 20, marginTop: 10}}>Profile</Text>
             <Text style={{textAlign: 'center', color: 'gray'}}>Enjoy your fast and safe driving</Text>
             <View>
@@ -57,14 +57,14 @@ const Profile = () => {
                      <FontAwesome5 name="pen" size={24} style={styles.icon}/>
                 </View>   
             </View>
-            <View style={styles.box} onPress={() => navigation.navigate('UpdatePassword')}>
+            <TouchableOpacity style={styles.box} onPress={() => navigation.navigate('UpdatePassword')}>
                 <View>
                     <Text style={styles.text1}> Password </Text>
                 </View>
                 <View>
                     <MaterialIcons name="keyboard-arrow-right" size={30} style={styles.icon}/>
                 </View>     
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.button} onpress={handlePress}> 
                 <Text style={styles.buttonText}>Update</Text>
             </TouchableOpacity>
@@ -74,6 +74,10 @@ const Profile = () => {
 }
 const styles = StyleSheet.create({
     container:{
+        paddingTop: 45,
+        paddingHorizontal: 15,
+        backgroundColor: 'white',
+        flex: 1
     },
     icon1:{
         color:'#227B98'
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     person: {
         color: '#41B5CF',
         position: 'relative',
-        marginLeft: 60,
+        marginLeft: '23%',
     },
     icon: {
         right: 5,
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
         border: 1,
         paddingVertical: 12,
         alignItems: 'center',
-        marginTop: 12
+        marginTop: '25%'
     },  
     buttonText:{
         fontWeight: '600',

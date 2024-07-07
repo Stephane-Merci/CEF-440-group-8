@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 
 
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={{flexDirection: "row"}}>
@@ -18,7 +18,7 @@ const Settings = () => {
                 <Ionicons name="person-circle-outline" size={200} style={styles.person}/>
             </View>
 
-            <TouchableOpacity onpress={() => console.log('Pressed')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                 <View style={styles.box}>
                     <View>
                         <Text style={styles.text1}> Gilles Christan</Text>
@@ -32,7 +32,7 @@ const Settings = () => {
 
             <Text style={{marginBottom: 5, marginTop: 10, fontSize: 18, fontWeight:'700'}}> General </Text>
 
-            <TouchableOpacity onpress={() => console.log('Pressed')}>
+            <TouchableOpacity onPress={() => navigation.navigate('NotifPref')}>
                 <View style={styles.box}>
                     <View>
                         <Text style={styles.text1}> Notifications </Text>
@@ -79,7 +79,7 @@ const Settings = () => {
                 <TouchableOpacity onpress={() => console.log('Pressed')}>
                     <View style={styles.bottom}>
                         <View>
-                            <Text style={{fontWeight:'bold', marginTop: 5}}> Reset Zaapa </Text>
+                            <Text style={{fontWeight:'bold', marginTop: 5, marginLeft:'8%'}}> Reset Zaapa </Text>
                         </View>
                         <View>
                             <MaterialIcons name="lock-reset" size={30} style={styles.icons}/>
@@ -87,10 +87,10 @@ const Settings = () => {
                     </View>
                 </TouchableOpacity>
                 
-                <TouchableOpacity onpress={() => console.log('Pressed')}>
+                <TouchableOpacity onpress={() => navigation.navigate('LoginPage')}>
                     <View style={styles.bottom}>
                         <View>
-                            <Text style={{marginLeft:35, fontWeight:'bold', right: 35, marginTop: 5}}> Logout </Text>
+                            <Text style={{marginLeft:'20%', fontWeight:'bold', marginTop: 5}}> Logout </Text>
                         </View>
                         <View>
                             <MaterialCommunityIcons name="logout" size={30}  style={styles.iconss}/>
@@ -98,13 +98,17 @@ const Settings = () => {
                     </View>
                 </TouchableOpacity>
             </View>
-            <Navbar/>
+            <Navbar Settings={true}/>
         </View>
         
     );
 }
 const styles = StyleSheet.create({
     container:{
+        paddingTop: 45,
+        paddingHorizontal: 15,
+        backgroundColor: 'white',
+        flex: 1
     },
     text1:{
         fontSize: 16,
@@ -130,7 +134,7 @@ const styles = StyleSheet.create({
     person: {
         color: '#41B5CF',
         position: 'relative',
-        marginLeft: 60,
+        marginLeft: '25%',
     },
     icon: {
         right: 5,

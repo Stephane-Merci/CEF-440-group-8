@@ -10,7 +10,7 @@ const LearnPage = () => {
         console.log(`GO Next guide page`);
     };
     return (
-        <View>
+        <View style={styles.container}>
             <TouchableOpacity style={styles.flex}>
                 <Entypo name="open-book" size={28} color="black" />
                 <Text style={styles.head}>Learn</Text>
@@ -25,14 +25,15 @@ const LearnPage = () => {
             <Text style={styles.small}>Today save tip</Text>
             <RoadLearnList title={"Turn Left"} description={"Logistic regression is a fundamental classification technique..."} />
 
-            <Navbar/>
+            <Navbar Learn={true}/>
         </View>
     )
 }
-const styles = StyleSheet.create({
+ const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        paddingTop: 45,
+        paddingHorizontal: 15
     },
     flex: {
         flexDirection: 'row',

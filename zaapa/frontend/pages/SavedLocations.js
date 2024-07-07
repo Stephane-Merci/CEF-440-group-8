@@ -3,8 +3,9 @@ import  React from 'react'
 import { EvilIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-import { FontAwesome6 } from '@expo/vector-icons';
+import { Ionicons} from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Navbar from '../components/Navbar';
 
 
 
@@ -76,14 +77,19 @@ const SavedLocations = () => {
             
             
             <TouchableOpacity style={styles.button} onpress={handlePress}> 
-                <Text style={styles.buttonText}>Update</Text>
+                <Ionicons name="add-circle-outline" size={28} color="#FFFFFF" />
+                <Text style={styles.buttonText}> Add Location</Text>
             </TouchableOpacity>
-            
+            <Navbar Saved={true}/>
         </View>
     );
 }
 const styles = StyleSheet.create({
     container:{
+        paddingTop: 45,
+        paddingHorizontal: 15,
+        backgroundColor: 'white',
+        flex: 1
     },
     icon1:{
         color:'#227B98'
@@ -128,15 +134,23 @@ const styles = StyleSheet.create({
         top: -3
     },
     button:{
-        borderRadius: 20,
+        borderRadius: 25,
         backgroundColor: '#41B5CF',
         border: 1,
         paddingVertical: 12,
         alignItems: 'center',
-        marginTop: 330
+        alignSelf: 'flex-end',
+        width: '40%',
+        justifyContent: 'center',
+        gap: 5,
+        position: 'absolute',
+        bottom: 100,
+        right: 25,
+        flexDirection: 'row',
     },  
     buttonText:{
         fontWeight: '600',
+        fontSize: 16,
         color: 'white',
     }, 
 

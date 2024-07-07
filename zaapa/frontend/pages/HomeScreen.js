@@ -8,6 +8,7 @@ import polyline from '@mapbox/polyline';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from '@react-navigation/native';
 import DestinationDetails from "../components/DestinationDetails";
+import Navbar from "../components/Navbar";
 
 
 export default function HomeScreen() {
@@ -257,6 +258,7 @@ export default function HomeScreen() {
           cancel={closeNavigation}
         />
       )}
+{ !modalVisible && <Navbar Explore={true}/>}
     </View>
   );
 }
