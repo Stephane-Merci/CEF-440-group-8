@@ -6,7 +6,7 @@ import MapView, { Marker, Polyline } from "react-native-maps";
 import { AntDesign } from '@expo/vector-icons'
 
 export default function NavigationScreen({ route, navigation }) {
-  const { routeCoords, destination } = route.params;
+  const { routeCoords, destination, duration, distance1 } = route.params;
   const [currentLocation, setCurrentLocation] = useState(null);
   const [speed, setSpeed] = useState(0);
   const [distance, setDistance] = useState(0);
@@ -30,7 +30,7 @@ export default function NavigationScreen({ route, navigation }) {
           setSpeed(location.coords.speed);
           const dist = getDistance(newLocation, destination);
           setDistance(dist);
-          setTimeLeft(dist / (location.coords.speed / 60)); // time left in minutes
+          setTimeLeft(dist / (location.coords.speed / 60)*10^-3); // time left in minutes
         }
       );
     };
@@ -90,23 +90,27 @@ export default function NavigationScreen({ route, navigation }) {
         )}
       </MapView>
       <View style={{position: 'absolute', left: 30, bottom: 100, backgroundColor: '#fff', borderRadius: 100, alignItems: 'center', justifyContent: 'center', paddingVertical: 10, paddingHorizontal: 20 }}>
-        <Text style={{fontSize: 18, color: 'red', fontWeight: '800'}}>50</Text>
+        <Text style={{fontSize: 18, color: 'red', fontWeight: '800'}}>{ speed.toFixed(0) }</Text>
         <Text style={{fontSize: 12, color: 'red'}}>Km/h</Text>
       </View>
       <View style={styles.infoContainer}>
         {/* <Text>Speed: {speed ? speed.toFixed(2) : 0} m/s</Text>*/}
         <View>
           <Text style={{fontSize: 12, color: 'rgba(156, 163, 175, 0.7)'}}>Arrival Time</Text>
-          <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{timeLeft ? getArrivalTime(timeLeft) : '00 : 00'}</Text>
+          {/* <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{timeLeft ? getArrivalTime(timeLeft) : '00 : 00'}</Text> */}
+          <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{duration ? getArrivalTime(duration) : '00 : 00'}</Text>
 
         </View>
         <View>
           <Text style={{fontSize: 12, color: 'rgba(156, 163, 175, 0.7)'}}>Distance</Text>
-          <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{distance.toFixed(2)} km</Text>
+          {/* <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{distance.toFixed(2)} km</Text> */}
+          <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{distance1.toFixed(2)} km</Text>
+
         </View>
         <View>
           <Text style={{fontSize: 12, color: 'rgba(156, 163, 175, 0.7)'}}>Time Left</Text>
-          <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{timeLeft ? formatTime(timeLeft) : '00 : 00'}</Text>
+          {/* <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{timeLeft ? formatTime(timeLeft) : '00 : 00'}</Text> */}
+          <Text style={{fontSize: 16, color: '#41B5CF', fontWeight: '800'}}>{duration ? formatTime(duration) : '00 : 00'}</Text>
 
         </View>
 

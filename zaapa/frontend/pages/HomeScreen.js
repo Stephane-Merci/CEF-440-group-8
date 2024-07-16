@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Button, Alert, ActivityIndicator, Modal } from "react-native";
 import { EvilIcons } from '@expo/vector-icons';
 import MapView, { Marker, Polyline } from "react-native-maps";
@@ -10,7 +10,6 @@ import { useNavigation } from '@react-navigation/native';
 import DestinationDetails from "../components/DestinationDetails";
 import Navbar from "../components/Navbar";
 
-
 export default function HomeScreen() {
   const [mapRegion, setMapRegion] = useState({
     latitude: 4.0479,
@@ -19,7 +18,7 @@ export default function HomeScreen() {
     longitudeDelta: 0.3,
   });
   const [originQuery, setOriginQuery] = useState('');
-  const [destinationQuery, setDestinationQuery] = useState('Limbe');
+  const [destinationQuery, setDestinationQuery] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
@@ -30,6 +29,7 @@ export default function HomeScreen() {
   const [routeInfo, setRouteInfo] = useState({ distance: 0, duration: 0 });
 
   const navigation = useNavigation();
+  const mapRef = useRef(null);
 
   const userLocation = async () => {
     try {
@@ -155,10 +155,11 @@ export default function HomeScreen() {
       });
       setModalVisible(true);
 
-      const roadSignsResponse = await axios.get('http://localhost:4000/api/roadsigns/get');
-      if (roadSignsResponse.status === 200) {
-        const fetchedRoadSigns = roadSignsResponse.data;
-        setRoadSigns(fetchedRoadSigns);
+      if (mapRef.current) {
+        mapRef.current.fitToCoordinates([origin, destination], {
+          edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
+          animated: true,
+        });
       }
 
     } catch (error) {
@@ -183,6 +184,8 @@ export default function HomeScreen() {
     navigation.navigate('Navigation', {
       routeCoords: routeCoords,
       destination: destination,
+      duration: routeInfo.duration.toFixed(0),
+      distance1: routeInfo.duration.toFixed(0)
     });
   };
 
@@ -198,12 +201,6 @@ export default function HomeScreen() {
         <>
           <SafeAreaView>
             <View style={styles.searchContainer}>
-              {/* <TextInput
-                style={[styles.searchInput, { marginRight: 10 }]}
-                placeholder="Origin"
-                value={originQuery}
-                onChangeText={setOriginQuery}
-              /> */}
               <TextInput
                 style={styles.input}
                 placeholder="Destination"
@@ -212,9 +209,8 @@ export default function HomeScreen() {
               />
               <EvilIcons name="location" size={32} style={styles.icon} color="#227B98cc" />
 
-              <TouchableOpacity onPress={searchLocation} style={{ backgroundColor: '#227B98cc', borderRadius: 25, paddingHorizontal: 20, paddingVertical: 5, justifyContent: 'center',
-    alignItems: 'center', }}>
-                <Text style={{ color: '#ffffff', fontSize: 16 }}> Search </Text>
+              <TouchableOpacity onPress={searchLocation} style={styles.searchButton}>
+                <Text style={styles.searchButtonText}> Search </Text>
               </TouchableOpacity>
             </View>
           </SafeAreaView>
@@ -224,7 +220,7 @@ export default function HomeScreen() {
               <Text style={styles.loadingText}>Loading...</Text>
             </View>
           ) : (
-            <MapView style={styles.map} region={mapRegion}>
+            <MapView style={styles.map} region={mapRegion} ref={mapRef}>
               {origin && (
                 <Marker coordinate={origin} title="Origin" pinColor="green" />
               )}
@@ -252,13 +248,13 @@ export default function HomeScreen() {
 
       {modalVisible && (
         <DestinationDetails
-          distance={routeInfo.distance.toFixed(1)}
+          distance={routeInfo.duration.toFixed(0)}
           duration={routeInfo.duration.toFixed(0)}
           startNavigation={startNavigation}
           cancel={closeNavigation}
         />
       )}
-{ !modalVisible && <Navbar Explore={true}/>}
+      { !modalVisible && <Navbar Explore={true}/>}
     </View>
   );
 }
@@ -311,11 +307,22 @@ const styles = StyleSheet.create({
     marginRight: 10,
     position: 'relative',
     flexBasis: '75%'
-
   },
   icon: {
     position: 'absolute',
     top: 32,
     left: 25
+  },
+  searchButton: {
+    backgroundColor: '#227B98cc',
+    borderRadius: 25,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  searchButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
   },
 });
